@@ -1,12 +1,15 @@
 Rails.application.routes.draw do
 
-  get 'projects' => 'projects#index'
+  namespace :api, path: '/', constraints: { subdomain: 'api'} do
+    resources :projects, only: :index
+  end
+
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  root 'projects#index'
+  # root 'projects#index'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
