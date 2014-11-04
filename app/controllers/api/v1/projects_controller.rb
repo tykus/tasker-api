@@ -6,6 +6,9 @@ module API
 
       def index
         @projects = Project.all
+        if query = params[:query]
+          @projects = @projects.where("title LIKE :query", query: "%#{query}%")
+        end
         render :index
       end
 
