@@ -5,6 +5,8 @@ gem 'rails', '4.1.7'
 
 gem 'rails-api'
 
+gem 'rabl'
+
 gem 'spring', :group => :development
 
 
