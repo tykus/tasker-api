@@ -14,7 +14,7 @@ class ListingProjectsTest < ActionDispatch::IntegrationTest
     project = Project.create!(:title => "Test Project")
     get "/v1/projects/#{project.id}.json"
     assert_equal 200, response.status
-    project_response = JSON.parse(response.body, symbolize_names: true)
+    project_response = json(response.body)
     assert_equal project.title, project_response[:project][:title]
   end
 
@@ -23,7 +23,7 @@ class ListingProjectsTest < ActionDispatch::IntegrationTest
     p2 = Project.create!(:title => "Another Project")
     get "/v1/projects.json?query=another"
     assert_equal 200, response.status
-    projects = JSON.parse(response.body, symbolize_names: true)
+    projects = json(response.body)
     project_titles = projects.collect { |p| p[:project][:title] }
     assert_includes project_titles, 'Another Project'
     refute_includes project_titles, 'Test Project'
