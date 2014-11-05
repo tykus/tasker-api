@@ -29,8 +29,9 @@ class ListingProjectsTest < ActionDispatch::IntegrationTest
 
   test 'returns projects as JSON' do
     # @TODO: this test is should not use the extension, only the header!
-    get '/v1/projects.json', {}, { 'Accepts' => Mime::JSON }
+    get '/v1/projects', {}, { 'Accept' => Mime::JSON }
     assert_equal 200, response.status
     assert_equal Mime::JSON, response.content_type
   end
+  
 end

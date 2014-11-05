@@ -37,7 +37,7 @@ module API
       end
 
       def project_params
-        params.permit(:title, :description, :due_date, :start_date, :end_date, :assigned_to)
+        params.require(:project).permit(:title, :description, :due_date, :start_date, :end_date, :assigned_to)
       end
 
     end

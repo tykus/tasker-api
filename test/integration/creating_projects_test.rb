@@ -13,9 +13,7 @@ class CreatingProjectsTest < ActionDispatch::IntegrationTest
     assert_equal Mime::JSON, response.content_type
 
     project = json(response.body)
-    puts "Response Location: #{response.location}"
-    puts "URL: #{api_v1_project_url(project[:id])}"
-    # assert_equal api_v1_project_url(project[:id]), response.location
+    assert_equal api_v1_project_url(project[:id]), response.location
   end
 
 end
