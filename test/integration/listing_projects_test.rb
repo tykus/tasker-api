@@ -2,8 +2,6 @@ require 'test_helper'
 
 class ListingProjectsTest < ActionDispatch::IntegrationTest
 
-  setup { host! 'api.example.com' }
-
   test 'returns list of all projects' do
     get '/v1/projects.json'
     assert_equal 200, response.status

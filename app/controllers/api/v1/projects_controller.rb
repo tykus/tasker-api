@@ -17,7 +17,10 @@ module API
       end
 
       def create
-        @project = Project.create(project_params)
+        project = Project.new project_params
+        if project.save
+          render json: project, status: 201, location: api_v1_project_url(project[:id])
+        end
       end
 
       def update
