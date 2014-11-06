@@ -26,9 +26,9 @@ module API
       end
 
       def update
-      end
-
-      def destroy
+        if @project.update(project_params)
+          render json: @project, status: 200
+        end
       end
 
     private
