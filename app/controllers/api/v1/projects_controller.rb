@@ -19,16 +19,16 @@ module API
       def create
         project = Project.new project_params
         if project.save
-          render json: project, status: 201, location: api_v1_project_url(project[:id])
+          render json: project, status: :created, location: api_v1_project_url(project[:id])
+        else
+          render json: project.errors, status: :unprocessable_entity
         end
       end
 
       def update
-        @project.update_attributes!(project_params)
       end
 
       def destroy
-        @project.destroy
       end
 
     private

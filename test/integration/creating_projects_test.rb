@@ -16,4 +16,14 @@ class CreatingProjectsTest < ActionDispatch::IntegrationTest
     assert_equal api_v1_project_url(project[:id]), response.location
   end
 
+  test 'does not create projects with title nil' do
+    post '/v1/projects.json',
+      { project:
+        { title: nil, description: 'Dummy project for test' }
+      }.to_json,
+      { 'Accept' => Mime::JSON, 'Content-Type' => Mime::JSON.to_s }
+
+    assert_equal 422, response.status
+    assert_equal Mime::JSON, response.content_type
+  end
 end
