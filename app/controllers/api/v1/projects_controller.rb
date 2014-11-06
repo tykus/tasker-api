@@ -28,6 +28,14 @@ module API
       def update
         if @project.update(project_params)
           render json: @project, status: 200
+        else
+          render json: @project.errors, status: :unprocessable_entity
+        end
+      end
+
+      def destroy
+        if @project.destroy
+          head 204
         end
       end
 
